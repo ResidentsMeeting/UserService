@@ -1,11 +1,12 @@
 spring:
-  application:
-    name: user-service
+  config:
+    import: aws-secretsmanager:resident_meeting
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql-service:3306/resident
-    username: root
-    password: zerobase
+    url: jdbc:mysql://${db_host}:3306/resident
+    username: ${db_username}
+    password: ${db_password}
     h2:
       console:
         enabled: true
@@ -16,17 +17,12 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
 
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://eureka-service:8761/eureka
-
 management:
   endpoints:
     web:
       exposure:
         include: refresh, health, beans
+
+token:
+  secret: ${token_secret}
+  expiration: ${token_expiration}

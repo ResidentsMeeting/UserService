@@ -1,10 +1,4 @@
 spring:
-  config:
-    import: aws-secretsmanager:resident_meeting
-
-  application:
-    name: user-service
-
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/resident
@@ -14,7 +8,7 @@ spring:
   jpa:
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -27,5 +21,5 @@ management:
         include: refresh, health, beans
 
 token:
-  secret: ${token_secret}
-  expiration: ${token_expiration_time}
+  secret: secret
+  expiration: 86400000
