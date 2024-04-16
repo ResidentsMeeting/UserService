@@ -6,9 +6,9 @@ import com.example.user_service.domain.UserRoleToken;
 import com.example.user_service.domain.dto.*;
 import com.example.user_service.service.UserRoleService;
 import com.example.user_service.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class UserController {
 	private final UserRoleService userRoleService;
 
 	@PostMapping("/sign-up")
-	public ResponseEntity<UserRoleToken> singUp(@RequestBody @Validated UserSignUpRequest requestLogin) {
+	public ResponseEntity<UserRoleToken> singUp(@RequestBody @Valid UserSignUpRequest requestLogin) {
 		userService.singUp(requestLogin);
 		return ResponseEntity.ok(userRoleService.makeUserRoleToken(
 				new Address(requestLogin.apartmentCode(),
@@ -32,7 +32,7 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<LogInResultDto> login(@RequestBody @Validated UserLoginRequest userLoginRequest) {
+	public ResponseEntity<LogInResultDto> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
 		return ResponseEntity.ok(userService.login(userLoginRequest));
 	}
 
