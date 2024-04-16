@@ -34,14 +34,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto singUp(UserSignUpRequest requestLogin) {
-		if (userRepository.existsByEmail(requestLogin.email())) {
-			throw new UserException(UserExceptionCode.EMAIL_ALREADY_EXIST);
-		}
-
-		if (userRepository.existsByPhone(requestLogin.phone())) {
-			throw new UserException(UserExceptionCode.PHONE_ALREADY_EXIST);
-		}
-
 		User user = User.fromSignUpRequestAndPasswordEncoder(requestLogin, passwordEncoder);
 		return userRepository.save(user).toUserDto();
 	}

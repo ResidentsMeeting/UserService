@@ -6,8 +6,7 @@ import lombok.Getter;
 public enum UserExceptionCode {
 
 	PASSWORD_NOT_MATCH(400, "Password not match"),
-	EMAIL_ALREADY_EXIST(400, "Email already exist"),
-	PHONE_ALREADY_EXIST(400, "Phone already exist"),
+	INVALID_INPUT(400, "Input is not valid"),
 	LEADER_ALREADY_EXIST(400,"leader already exist"),
 	TOKEN_ALREADY_EXIST(400,"token already exist" ),
 	TOKEN_NOT_FOUND(400, "token not found"),
